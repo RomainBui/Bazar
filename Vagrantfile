@@ -18,6 +18,13 @@ sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password pas
 sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password rootpass'
 sudo apt-get -y install mysql-server-5.5
 
+#!/bin/bash (Update 20 Nov)
+echo "Updating mysql configs in /etc/mysql/my.cnf."
+sudo sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+echo "Updated mysql bind address in /etc/mysql/my.cnf to 0.0.0.0 to allow external connections."
+sudo service mysql stop
+sudo service mysql start
+
 # PIP
 apt-get -y install python-pip
 
@@ -57,14 +64,6 @@ sed -i "17i su vagrant -c 'cd /home/vagrant && /home/vagrant/anaconda/bin/ipytho
 # Start MySQL
 echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION" | mysql -uroot -prootpass
 echo "FLUSH PRIVILEGES" | mysql -uroot -prootpass
-
-# Cimetery
-#mysql -u root -p
-#echo "Granting Privileges to root@localhost" | use mysql GRANT ALL ON . to root@'localhost' 
-#echo "Flush Privileges" | FLUSH PRIVILEGES
-#sudo /etc/init.d/mysql restart
-#echo "GRANT ALL ON . TO root@'localhost'" | mysql -uroot -prootpass
-#echo "flush privileges" | mysql -uroot -prootpass
 
 
 SCRIPT
