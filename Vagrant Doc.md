@@ -29,3 +29,6 @@
 `pip list` : display the list of the python packages
 
 `sudo conda install mysql-connector-python`
+
+
+
