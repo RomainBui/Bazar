@@ -14,7 +14,9 @@
 
 ##### MySQL
 
-`mysql -h localhost -u root -prootpass Obiz_Prod<dump.sql` : Import the dump
+`mysql -h localhost -u root -prootpass DB_Prod<dump.sql` : Import the dump
+
+`pv ./Shared/dump.sql | mysql -u root -prootpass -h localhost DB_Prod` : import the dump and see how it advances 
 
 `show database`
 
@@ -29,6 +31,4 @@
 `pip list` : display the list of the python packages
 
 `sudo conda install mysql-connector-python`
-
-
 
